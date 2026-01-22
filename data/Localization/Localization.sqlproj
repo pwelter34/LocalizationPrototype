@@ -68,6 +68,7 @@
     <None Include="local.publish.xml" />
     <None Include="Seed\Culture.sql" />
     <None Include="Seed\Content.sql" />
+    <None Include="Seed\Theme.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

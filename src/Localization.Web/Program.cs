@@ -3,6 +3,7 @@
 using FluentCommand;
 
 using Localization.Web.Components;
+using Localization.Web.Models;
 using Localization.Web.Services;
 
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -18,6 +19,7 @@ public static class Program
 
         builder.Services.AddRazorComponents();
 
+        // Add HybridCache and HttpContextAccessor
         builder.Services.AddHybridCache();
         builder.Services.AddHttpContextAccessor();
 
@@ -25,13 +27,18 @@ public static class Program
         builder.Services.AddSingleton<IConfigureOptions<RequestLocalizationOptions>, RequestLocalizationSetup>();
         builder.Services.AddLocalization();
 
+        // Configure FluentCommand with SQL Server and "Localization" connection string
         builder.Services.AddFluentCommand(builder => builder
             .UseConnectionName("Localization")
             .UseSqlServer()
         );
+
+        // Register localization services
         builder.Services.TryAddSingleton<CultureService>();
         builder.Services.TryAddTransient<ILocalizationProvider, DatabaseLocalization>();
 
+        // Configure theme state provider
+        builder.Services.TryAddScoped<ThemeStateProvider<Theme>, DatabaseThemeProvider>();
 
         var app = builder.Build();
 
@@ -44,7 +51,7 @@ public static class Program
         app.UseStatusCodePagesWithReExecute("/not-found", createScopeForStatusCodePages: true);
         app.UseHttpsRedirection();
 
-        // Apply request localization middleware - must be before UseAntiforgery
+        // Apply request localization middleware
         app.UseRequestLocalization();
 
         app.UseAntiforgery();

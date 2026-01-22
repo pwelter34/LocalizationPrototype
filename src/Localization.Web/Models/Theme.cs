@@ -36,16 +36,4 @@ public class Theme
 
     [Column("SupportEmail")]
     public string? SupportEmail { get; set; }
-
-    [Column("Created")]
-    public DateTimeOffset Created { get; set; }
-
-    [Column("CreatedBy")]
-    public string? CreatedBy { get; set; }
-
-    [Column("Updated")]
-    public DateTimeOffset Updated { get; set; }
-
-    [Column("UpdatedBy")]
-    public string? UpdatedBy { get; set; }
 }

@@ -1,14 +1,12 @@
 ﻿// Ignore Spelling: Localizer
 
 using System.Globalization;
-using System.Threading;
 
 using FluentCommand;
 
 using Localization.Web.Models;
 
 using Microsoft.Extensions.Caching.Hybrid;
-using Microsoft.Extensions.Localization;
 
 namespace Localization.Web.Services;
 

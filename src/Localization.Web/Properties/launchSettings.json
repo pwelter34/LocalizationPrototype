@@ -1,20 +1,29 @@
 {
   "$schema": "https://json.schemastore.org/launchsettings.json",
   "profiles": {
-    "demo": {
+    "ReadyCredit": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "https://demo.dev.localhost:7294;http://demo.dev.localhost:5022",
+      "applicationUrl": "https://readycredit.dev.localhost:7294;http://readycredit.dev.localhost:5022",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "vendor": {
+    "Bravura": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "https://vendor.dev.localhost:7294;http://vendor.dev.localhost:5022",
+      "applicationUrl": "https://bravura.dev.localhost:7294;http://bravura.dev.localhost:5022",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "Polymind": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "applicationUrl": "https://polymind.dev.localhost:7294;http://polymind.dev.localhost:5022",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

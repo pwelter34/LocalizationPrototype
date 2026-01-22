@@ -1,22 +1,15 @@
 ﻿@page "/"
 
-<PageTitle>
-    <LocalizedText Key="@Localizations.Home.Title">
-        Localization
-    </LocalizedText>
-</PageTitle>
+<PageTitle>@SiteName</PageTitle>
 
 <div class="container-xxl">
     <div class="bg-light p-5 rounded shadow mb-5">
         <h1>
-            <img src="/logo/ReadyCredit.png"
-                 alt="Ready Credit"
-                 class="portal-logo me-3"
+            <img src="@SiteLogo"
+                 class="me-3"
                  height="60" />
 
-            <LocalizedText Key="@Localizations.Home.Title">
-                Localization
-            </LocalizedText>
+            @SiteName
         </h1>
         <p class="lead">
             <LocalizedText Key="@Localizations.Home.Subtitle">
@@ -129,3 +122,11 @@
         </div>
     </section>
 </div>
+
+@code {
+    [CascadingParameter]
+    public ThemeState<Theme>? Theme { get; set; }
+
+    protected string SiteLogo => Theme?.Current?.SiteLogo ?? "/logo/ReadyCredit.png";
+    protected string SiteName => Theme?.Current?.SiteName ?? "Ready Credit";
+}

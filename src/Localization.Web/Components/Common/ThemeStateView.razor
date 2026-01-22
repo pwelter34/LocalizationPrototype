@@ -1,0 +1,38 @@
+@typeparam TState where TState : class
+
+@if (ThemeState is null)
+{
+    @if (LoadingTemplate is not null)
+    {
+        @LoadingTemplate
+    }
+    else
+    {
+        <div>Loading...</div>
+    }
+}
+else
+{
+    <CascadingValue Value="ThemeState" IsFixed="true">
+        @ChildContent
+    </CascadingValue>
+}
+
+@code {
+    [Inject]
+    public required ThemeStateProvider<TState> ThemeStateProvider { get; set; }
+
+    [Parameter, EditorRequired]
+    public required RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public RenderFragment? LoadingTemplate { get; set; }
+
+
+    protected ThemeState<TState>? ThemeState { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        ThemeState = await ThemeStateProvider.GetThemeAsync();
+    }
+}

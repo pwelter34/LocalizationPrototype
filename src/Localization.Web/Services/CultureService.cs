@@ -7,7 +7,9 @@ public class CultureService
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly ILogger<CultureService> _logger;
 
-    public CultureService(IHttpContextAccessor httpContextAccessor, ILogger<CultureService> logger)
+    public CultureService(
+        IHttpContextAccessor httpContextAccessor,
+        ILogger<CultureService> logger)
     {
         _httpContextAccessor = httpContextAccessor;
         _logger = logger;
@@ -19,12 +21,12 @@ public class CultureService
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(cultureName);
 
-        SaveCultureToCookie(cultureName);
+        SaveCultureCookie(cultureName);
 
         CultureChanged?.Invoke(this, cultureName);
     }
 
-    private void SaveCultureToCookie(string cultureName)
+    private void SaveCultureCookie(string cultureName)
     {
         try
         {

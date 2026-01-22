@@ -7,12 +7,10 @@
         <div class="container-fluid">
             <a class="navbar-brand p-0"
                href="@RouteLinks.Home()">
-                <img src="/logo/ReadyCredit.png"
+                <img src="@SiteLogo"
                      class="me-2"
                      height="30" />
-                <LocalizedText Key="@Localizations.Navigation.Home">
-                    Localization
-                </LocalizedText>
+                @SiteName
             </a>
 
             <button class="navbar-toggler"
@@ -60,6 +58,10 @@
 </header>
 
 @code {
+    [CascadingParameter]
+    public ThemeState<Theme>? Theme { get; set; }
 
+    protected string SiteLogo => Theme?.Current?.SiteLogo ?? "/logo/ReadyCredit.png";
+    protected string SiteName => Theme?.Current?.SiteName ?? "Ready Credit";
 }
 
