@@ -1,0 +1,90 @@
+﻿@if (IsLoading)
+{
+    @if (LoadingTemplate is not null)
+    {
+        @LoadingTemplate
+    }
+    else
+    {
+        <span>Loading...</span>
+    }
+}
+else if (Value is not null)
+{
+    @Value
+}
+else
+{
+    @ChildContent
+}
+
+@code {
+    private string? _lastKey;
+    private object[]? _lastArguments;
+
+    [Inject]
+    public required ILocalizationProvider Localizer { get; set; }
+
+    [Parameter, EditorRequired]
+    public required string Key { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public RenderFragment? LoadingTemplate { get; set; }
+
+    [Parameter]
+    public object[]? Arguments { get; set; }
+
+
+    protected bool IsLoading { get; set; }
+
+    protected MarkupString? Value { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+
+        // Check if key or arguments changed
+        var argumentsChanged = !AreArgumentsEqual(_lastArguments, Arguments);
+        if (_lastKey == Key && !argumentsChanged)
+            return;
+
+        IsLoading = true;
+        try
+        {
+            // Culture is already set by the request localization middleware
+            var value = await Localizer.GetStringAsync(Key, Arguments);
+
+            Value = (value is not null) ? new MarkupString(value) : null;
+
+            _lastKey = Key;
+            _lastArguments = Arguments;
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+
+    private static bool AreArgumentsEqual(object[]? args1, object[]? args2)
+    {
+        if (ReferenceEquals(args1, args2))
+            return true;
+
+        if (args1 is null || args2 is null)
+            return false;
+
+        if (args1.Length != args2.Length)
+            return false;
+
+        for (int i = 0; i < args1.Length; i++)
+        {
+            if (!Equals(args1[i], args2[i]))
+                return false;
+        }
+
+        return true;
+    }
+}

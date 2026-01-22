@@ -1,0 +1,32 @@
+﻿@page "/culture/{Code}"
+@attribute [ExcludeFromInteractiveRouting]
+
+<PageTitle>Culture</PageTitle>
+
+<span>Loading ...</span>
+
+@code {
+    [Inject]
+    public required NavigationManager NavigationManager { get; set; }
+
+    [Inject]
+    public required CultureService CultureService { get; set; }
+
+    [Inject]
+    public required IHttpContextAccessor HttpContextAccessor { get; set; }
+
+    [Parameter, EditorRequired]
+    public required string Code { get; set; }
+
+    [SupplyParameterFromQuery(Name = "returnUrl")]
+    public string? ReturnUrl { get; set; }
+
+    protected override void OnInitialized()
+    {
+        var returnUrl = ReturnUrl ?? "/";
+
+        CultureService.Change(Code);
+
+        NavigationManager.NavigateTo(returnUrl, forceLoad: true);
+    }
+}

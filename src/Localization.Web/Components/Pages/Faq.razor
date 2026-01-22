@@ -1,0 +1,213 @@
+﻿@page "/faq"
+
+<PageTitle>
+    <LocalizedText Key="@Localizations.Faq.Title">
+        Frequently Asked Questions
+    </LocalizedText>
+</PageTitle>
+
+<div class="container-xxl">
+    <div class="bg-light p-5 rounded shadow mb-4">
+        <h1>
+            <LocalizedText Key="@Localizations.Faq.Title">
+                Frequently Asked Questions
+            </LocalizedText>
+        </h1>
+        <p class="lead">
+            <LocalizedText Key="@Localizations.Faq.Subtitle">
+                Find answers to common questions about our localization portal.
+            </LocalizedText>
+        </p>
+    </div>
+
+    <div class="accordion"
+         id="faqAccordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#faq1"
+                        aria-expanded="true"
+                        aria-controls="faq1">
+                    <LocalizedText Key="@Localizations.Faq.Question1">
+                        What is the Localization Portal?
+                    </LocalizedText>
+                </button>
+            </h2>
+            <div id="faq1"
+                 class="accordion-collapse collapse show"
+                 data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    <LocalizedText Key="@Localizations.Faq.Answer1">
+                        The Localization Portal is a centralized platform for managing translations and content across
+                        multiple languages and cultures. It allows you to efficiently organize, translate, and maintain
+                        your application's text content in different languages.
+                    </LocalizedText>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#faq2"
+                        aria-expanded="false"
+                        aria-controls="faq2">
+                    <LocalizedText Key="@Localizations.Faq.Question2">
+                        How do I add a new language?
+                    </LocalizedText>
+                </button>
+            </h2>
+            <div id="faq2"
+                 class="accordion-collapse collapse"
+                 data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    <LocalizedText Key="@Localizations.Faq.Answer2">
+                        To add a new language, navigate to the Culture settings in the administration panel. Click "Add
+                        Culture" and select the desired language from the dropdown. Once added, you can begin
+                        translating content for that culture.
+                    </LocalizedText>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#faq3"
+                        aria-expanded="false"
+                        aria-controls="faq3">
+                    <LocalizedText Key="@Localizations.Faq.Question3">
+                        What content types can be localized?
+                    </LocalizedText>
+                </button>
+            </h2>
+            <div id="faq3"
+                 class="accordion-collapse collapse"
+                 data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    <LocalizedText Key="@Localizations.Faq.Answer3">
+                        You can localize various content types including:
+                        <ul class="mt-2">
+                            <li>UI text and labels</li>
+                            <li>Error messages and notifications</li>
+                            <li>Page content and descriptions</li>
+                            <li>Email templates</li>
+                            <li>Help documentation</li>
+                        </ul>
+                    </LocalizedText>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#faq4"
+                        aria-expanded="false"
+                        aria-controls="faq4">
+                    <LocalizedText Key="@Localizations.Faq.Question4">
+                        How are themes related to localization?
+                    </LocalizedText>
+                </button>
+            </h2>
+            <div id="faq4"
+                 class="accordion-collapse collapse"
+                 data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    <LocalizedText Key="@Localizations.Faq.Answer4">
+                        Themes allow you to organize your content into logical groups or categories. Each theme can have
+                        its own set of localized content, making it easier to manage translations for different sections
+                        of your application or different products.
+                    </LocalizedText>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#faq5"
+                        aria-expanded="false"
+                        aria-controls="faq5">
+                    <LocalizedText Key="@Localizations.Faq.Question5">
+                        Can I export and import translations?
+                    </LocalizedText>
+                </button>
+            </h2>
+            <div id="faq5"
+                 class="accordion-collapse collapse"
+                 data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    <LocalizedText Key="@Localizations.Faq.Answer5">
+                        Yes, the portal supports exporting translations to common formats like JSON, XML, or RESX files.
+                        This allows you to work with external translation services or share translations between
+                        different environments. Imports can be performed to bulk-update translations.
+                    </LocalizedText>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#faq6"
+                        aria-expanded="false"
+                        aria-controls="faq6">
+                    <LocalizedText Key="@Localizations.Faq.Question6">
+                        What happens if a translation is missing?
+                    </LocalizedText>
+                </button>
+            </h2>
+            <div id="faq6"
+                 class="accordion-collapse collapse"
+                 data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    <LocalizedText Key="@Localizations.Faq.Answer6">
+                        When a translation is missing for a specific culture, the system will fall back to the default
+                        language (typically English). This ensures your application always displays some content, even
+                        if translations are incomplete. Missing translations are typically logged so they can be
+                        identified and addressed.
+                    </LocalizedText>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#faq7"
+                        aria-expanded="false"
+                        aria-controls="faq7">
+                    <LocalizedText Key="@Localizations.Faq.Question7">
+                        How do I get support?
+                    </LocalizedText>
+                </button>
+            </h2>
+            <div id="faq7"
+                 class="accordion-collapse collapse"
+                 data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    <LocalizedText Key="@Localizations.Faq.Answer7">
+                        For technical support, please contact our support team at <a
+                           href="mailto:support@example.com">support@example.com</a>. You can also check our
+                        documentation or submit a ticket through the help portal for assistance with specific issues.
+                    </LocalizedText>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

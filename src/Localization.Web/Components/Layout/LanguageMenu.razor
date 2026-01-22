@@ -1,0 +1,77 @@
+﻿@using Localization.Web.Models
+@using Localization.Web.Services
+@using System.Globalization
+
+<!-- Culture Menu -->
+<li class="nav-item dropdown">
+    <a id="navbar-dropdown-culture"
+       class="nav-link dropdown-toggle"
+       href="#"
+       role="button"
+       data-bs-toggle="dropdown"
+       aria-expanded="false">
+        @if (Current is not null)
+        {
+            <span class="me-2 @Current.FlagClass"></span> <span>@Current.DisplayName</span>
+        }
+        else
+        {
+            <span class="fi fi-us me-2"></span> <span>English</span>
+        }
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end"
+        aria-labelledby="navbar-dropdown-culture">
+        @foreach (var culture in Cultures)
+        {
+            <li>
+                <a id="navbar-item-culture-english-link"
+                   class="dropdown-item"
+                   title="@culture.NativeName"
+                   href="@RouteLinks.Culture(culture.CultureCode, ReturnUrl)">
+                    <span class="me-2 @culture.FlagClass"></span> <span>@culture.DisplayName</span>
+                </a>
+            </li>
+
+        }
+    </ul>
+</li>
+
+
+@code {
+    [Inject]
+    public required CultureService CultureService { get; set; }
+
+    [Inject]
+    public required ILocalizationProvider Localizer { get; set; }
+
+    [Inject]
+    public required NavigationManager NavigationManager { get; set; }
+
+
+    protected List<Culture> Cultures { get; set; } = [];
+
+    protected Culture? Current { get; set; }
+
+    protected string ReturnUrl { get; set; } = "/";
+
+    public async Task HandleChangeLanguage(string cultureCode)
+    {
+        CultureService.Change(cultureCode);
+        await InvokeAsync(StateHasChanged);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        ReturnUrl = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+        var results = await Localizer.GetCulturesAsync();
+
+        Cultures.Clear();
+        if (results is not null)
+            Cultures.AddRange(results);
+
+        var currentCulture = CultureInfo.CurrentUICulture;
+        Current = Cultures.FirstOrDefault(c => c.CultureCode == currentCulture.Name);
+    }
+}

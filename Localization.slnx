@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="data/Localization/Localization.sqlproj" Id="2a91fd31-00e9-43dd-8857-7095bb1851f3">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="src/Localization.Web/Localization.Web.csproj" Id="8eb54bf6-29b5-4d8d-84a3-c0a9dd653e26" />
+</Solution>
