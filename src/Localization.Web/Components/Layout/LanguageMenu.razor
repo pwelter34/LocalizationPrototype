@@ -39,9 +39,6 @@
 
 @code {
     [Inject]
-    public required CultureService CultureService { get; set; }
-
-    [Inject]
     public required ILocalizationProvider Localizer { get; set; }
 
     [Inject]
@@ -53,12 +50,6 @@
     protected Culture? Current { get; set; }
 
     protected string ReturnUrl { get; set; } = "/";
-
-    public async Task HandleChangeLanguage(string cultureCode)
-    {
-        CultureService.Change(cultureCode);
-        await InvokeAsync(StateHasChanged);
-    }
 
     protected override async Task OnInitializedAsync()
     {
